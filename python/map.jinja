@@ -1,31 +1,41 @@
 {% set python2 = salt['grains.filter_by']({
-    'Debian': {
+    'default': {
         'pkg': 'python',
+        'pip_pkg': 'python-pip',
+        'version': '',
+    },
+    'Debian': {
         'dev_pkg': 'python-dev',
         'mako_pkg': 'python-mako',
-        'pip_pkg': 'python-pip',
         'm2c_pkg': 'python-m2crypto',
     },
     'RedHat': {
-        'pkg': 'python',
         'dev_pkg': 'python-devel',
         'mako_pkg': 'python-mako',
-        'pip_pkg': 'python-pip',
         'm2c_pkg': 'python-m2ext',
     },
-}, merge=salt['pillar.get']('python2:lookup')) %}
+    'Windows':
+    {
+        'pkg': 'python2_x64',
+        'python_path': 'C:\\Python27',
+        'pip_cwd': 'C:\\Python27\\scripts',
+        'pip_bin_env': 'C:\\Python27\\scripts\\pip.exe',
+        'venv_bin': 'C:\\Python27\\scripts\\virtualenv',
+        'version': '2.7.12150',
+    },
+}, merge=salt['pillar.get']('python2:lookup'), base='default') %}
 
 {% set python3 = salt['grains.filter_by']({
-    'Debian': {
+    'default': {
         'pkg': 'python3',
+        'pip_pkg': 'python3-pip',
+    },
+    'Debian': {
         'dev_pkg': 'python3-dev',
         'mako_pkg': 'python3-mako',
-        'pip_pkg': 'python3-pip',
     },
     'RedHat': {
-        'pkg': 'python3',
         'dev_pkg': 'python3-devel',
         'mako_pkg': 'python3-mako',
-        'pip_pkg': 'python3-pip',
     },
-}, merge=salt['pillar.get']('python3:lookup')) %}
+}, merge=salt['pillar.get']('python3:lookup'), base='default') %}
