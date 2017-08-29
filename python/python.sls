@@ -3,3 +3,4 @@
 python2:
   pkg.installed:
     - name: {{ python2.pkg }}
+    - version: {{ python2.version }}
