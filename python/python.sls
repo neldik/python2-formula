@@ -11,7 +11,7 @@ python2:
 
 Symlink python into install directory:
   file.symlink:
-    - name: {{system_settings.install_directory}}/python.exe
+    - name: {{system_settings.bin_directory}}/python.exe
     - target: {{python2.python_path}}/python.exe
     - makedirs: True
 

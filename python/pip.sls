@@ -8,7 +8,7 @@ include:
 
 Symlink pip into install directory:
   file.symlink:
-    - name: {{system_settings.install_directory}}/pip.exe
+    - name: {{system_settings.bin_directory}}/pip.exe
     - target: {{python2.pip_cwd}}/pip.exe
     - makedirs: True
     - require:
