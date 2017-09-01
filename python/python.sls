@@ -1,4 +1,5 @@
 {% from "python/map.jinja" import python2 with context %}
+{% from "system/map.jinja" import system_settings with context %}
 
 python2:
   pkg.installed:
@@ -7,6 +8,12 @@ python2:
 
 
 {% if salt['grains.get']('kernel', '') == 'Windows' %}
+
+{{system_settings.install_directory}}/python.exe:
+  file.symlink:
+    - target: {{python2.python_path}}/python.exe
+    - makedirs: True
+
 Add python to system path:
   module.run:
     - name: win_path.add
