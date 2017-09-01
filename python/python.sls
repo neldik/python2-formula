@@ -14,14 +14,21 @@ Symlink python into install directory:
     - name: {{system_settings.bin_directory}}/python.exe
     - target: {{python2.python_path}}/python.exe
     - makedirs: True
+    - onchanges:
+        - pkg: python2
 
 Add python to system path:
   module.run:
     - name: win_path.add
     - path: {{python2.python_path}}
+    - onchanges:
+        - pkg: python2
 
 Add python scripts to system path:
   module.run:
     - name: win_path.add
     - path: {{python2.pip_cwd}}
+    - onchanges:
+        - pkg: python2
+        
 {% endif %}
