@@ -6,8 +6,9 @@ include:
 
 {% if salt['grains.get']('kernel', '') == 'Windows' %}
 
-{{system_settings.install_directory}}/pip.exe:
+Symlink pip into install directory:
   file.symlink:
+    - name: {{system_settings.install_directory}}/pip.exe
     - target: {{python2.pip_cwd}}/pip.exe
     - makedirs: True
     - require:
@@ -20,5 +21,5 @@ python2-pip:
     - name: {{ python2.pip_pkg }}
     - require:
         - sls: python.python
-        
+
 {% endif %}

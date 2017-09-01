@@ -9,8 +9,9 @@ python2:
 
 {% if salt['grains.get']('kernel', '') == 'Windows' %}
 
-{{system_settings.install_directory}}/python.exe:
+Symlink python into install directory:
   file.symlink:
+    - name: {{system_settings.install_directory}}/python.exe
     - target: {{python2.python_path}}/python.exe
     - makedirs: True
 
